@@ -111,8 +111,12 @@ function crawl<S extends object = JSONSchema, O extends ParserOptions<S> = Parse
             circular = dereferenced.circular;
             // Avoid pointless mutations; breaks frozen objects to no profit
             if (obj[key] !== dereferenced.value) {
-              obj[key] = dereferenced.value;
-              derefOptions?.onDereference?.(value.$ref, obj[key], obj, key);
+              if (derefOptions.onDereference) {
+                const shouldDereference = derefOptions.onDereference(value.$ref, dereferenced.value, obj, key) ?? true;
+                if (shouldDereference) {
+                  obj[key] = dereferenced.value;
+                }
+              }
             }
           } else {
             if (!parents.has(value)) {

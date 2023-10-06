@@ -37,7 +37,7 @@ export interface DereferenceOptions {
    * @argument {JSONSchemaObject} parent - The parent of the dereferenced object
    * @argument {string} parentPropName - The prop name of the parent object whose value was dereferenced
    */
-  onDereference?(path: string, value: JSONSchemaObject, parent?: JSONSchemaObject, parentPropName?: string): void;
+  onDereference?(path: string, value: JSONSchemaObject, parent?: JSONSchemaObject, parentPropName?: string): void | boolean;
 
   /**
    * Whether a reference should resolve relative to its directory/path, or from the cwd
