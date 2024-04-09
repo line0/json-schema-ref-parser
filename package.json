@@ -41,6 +41,16 @@
   },
   "license": "MIT",
   "funding": "https://github.com/sponsors/philsturgeon",
+  "exports": {
+    ".": {
+      "types": "./dist/lib/index.d.ts",
+      "default": "./dist/lib/index.js"
+    },
+    "./*": {
+      "types": "./dist/lib/*.d.ts",
+      "default": "./dist/lib/*.js"
+    }
+  },
   "types": "dist/lib/index.d.ts",
   "main": "dist/lib/index.js",
   "browser": {
